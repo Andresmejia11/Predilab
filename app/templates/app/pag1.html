@@ -1,0 +1,126 @@
+﻿{% extends 'app/layout.html' %}
+{% block content %}
+    <meta charset=”utf8″ />
+<h2>{{ title }} Predicción Modelo Uno  "Red Neuronal MLPRegressor"</h2>
+<h3>{{ message }}Cantidad de Reportes Predichos por semana</h3>
+<div class="datagrid">
+<table >
+<thead>
+    <tr>
+    <th>Semana</th>
+    <th>Fusibles</th>
+     <th>Fuente</th>
+     <th>Gen y Osc</th>
+        <th>Multimetros</th>
+        <th>Sondas</th>
+        <th>Otros</th>
+        <th>Nrep</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Semana-2</td>
+        <td>{{sm2}}</td>
+        <td>{{sm2f}}</td>
+        <td>{{sm2g}}</td>
+        <td>{{sm2m}}</td>
+        <td>{{sm2s}}</td>
+        <td>{{sm2o}}</td>
+        <td>{{sm2n}}</td>
+    </tr>
+<tr class="alt">
+        <td>Semana-1</td>
+        <td>{{sm1}}</td>
+        <td>{{ sm2f}}</td>
+        <td>{{ sm2g}}</td>
+        <td>{{sm1m}}</td>
+        <td>{{ sm1s}}</td>
+        <td>{{sm1o}}</td>
+        <td>{{sm1n}}</td>
+</tr>
+<tr>
+        <td>Semana+1</td>
+        <td>{{ average_1u}}</td>
+        <td>{{ average_1f}}</td>
+        <td>{{ average_1g}}</td>
+        <td>{{ average_1}}</td>
+        <td>{{ average_1s}}</td>
+        <td>{{ average_1o}}</td>
+        <td>{{ average}}</td>
+</tr>
+<tr class="alt">
+        <td>Semana+2</td>
+        <td>{{ average_2u}}</td>
+        <td>{{ average_2f}}</td>
+        <td>{{ average_2g}}</td>
+        <td>{{ average_2}}</td>
+        <td>{{ average_2s}}</td>
+        <td>{{ average_2o}}</td>
+        <td>{{ average11}}</td>
+</tr>
+<tr>
+        <td>Semana+3</td>
+        <td>{{ average_3u}}</td>
+        <td>{{ average_3f}}</td>
+        <td>{{ average_3g}}</td>
+        <td>{{ average_3}}</td>
+        <td>{{ average_3s}}</td>
+        <td>{{ average_3o}}</td>
+        <td>{{ average12}}</td>
+</tr>
+<tr class="alt">
+        <td>Semana+4</td>
+        <td>{{ average_4u}}</td>
+        <td>{{ average_4f}}</td>
+        <td>{{ average_4g}}</td>
+        <td>{{ average_4}}</td>
+        <td>{{ average_4s}}</td>
+        <td>{{ average_4o}}</td>
+        <td>{{ average13}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>{{ message }}</h3>
+<h3>{{ message }}</h3>
+
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Semana',  'Fusibles', 'Fuente','Gen y Osc','Multimetro','Sondas','Otros','NumRep'],
+          ['Semana-2',  {{sm2}}, {{ sm2f}}, {{ sm2g}}, {{ sm2m}}, {{ sm2s}},{{ sm2o}},{{ sm2n}}],
+          ['Semana-1',  {{sm1}},{{ sm1f}}, {{ sm1g}}, {{ sm1m}}, {{ sm1s}}, {{ sm1o}}, {{ sm1n}}],
+          ['Semana+1', {{ average_1u}}, {{ average_1f}}, {{ average_1g}},{{ average_1}}, {{ average_1s}}, {{ average_1o}}, {{ average}}],
+          ['Semana+2', {{ average_2u}},{{ average_2f}}, {{ average_2g}},{{ average_2}}, {{ average_2s}}, {{ average_2o}}, {{ average11}}],
+          ['Semana+3', {{ average_3u}}, {{ average_3f}}, {{ average_3g}}, {{ average_3}}, {{ average_3s}}, {{ average_3o}}, {{ average12}}],
+          ['Semana+4', {{ average_4u}}, {{ average_4f}}, {{ average_4g}}, {{ average_4}}, {{ average_4s}}, {{ average_4o}}, {{ average13}}]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Prediccion Por Red Neuronal MLPRegressor',
+            subtitle: '',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="columnchart_material" style="width: 1000px; height: 500px;"></div>
+  </body>
+</html>
+
+<a class="btn btn-default" href="https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPRegressor.html?fbclid=IwAR3dmeV6ATaVoQtGSYvlhOdhnbf3fCxDZrQwM3aeetRM7mfRGSjzwyOcxg0">Leer mas &raquo;</a></p>
+
+{% endblock %}

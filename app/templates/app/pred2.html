@@ -1,0 +1,132 @@
+﻿{% extends 'app/layout.html' %}
+{% block content %}
+<meta charset=”utf8″ />
+
+
+<h2>{{ title }}Prediccion Por "Random Forest Regressor"</h2>
+<h3>{{ message }}Cantidad Uso de Equipos Predichos Por Semana</h3>
+<div class="datagrid">
+<table >
+<thead>
+    <tr>
+    <th>Semana</th>
+    <th>N/A</th>
+     <th>Sondas</th>
+     <th>Multimetros</th>
+        <th>Osciloscopio</th>
+        <th>Generadores</th>
+        <th>FPGA</th>
+        <th>Fuente</th>
+        <th>Transformador</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Semana-2</td>
+        <td>{{smm2}}</td>
+        <td>{{smn2}}</td>
+        <td>{{smo2}}</td>
+        <td>{{smp2}}</td>
+        <td>{{smq2}}</td>
+        <td>{{smr2}}</td>
+        <td>{{sms2}}</td>
+        <td>{{smt2}}</td>
+    </tr>
+<tr class="alt">
+        <td>Semana-1</td>
+        <td>{{smm1}}</td>
+        <td>{{smn1}}</td>
+        <td>{{smo1}}</td>
+        <td>{{smp1}}</td>
+        <td>{{smq1}}</td>
+        <td>{{smr1}}</td>
+        <td>{{sms1}}</td>
+        <td>{{smt1}}</td>
+</tr>
+<tr>
+        <td>Semana+1</td>
+        <td>{{ averag_11m}}</td>
+        <td>{{ averag_11n}}</td>
+        <td>{{ averag_11o}}</td>
+        <td>{{ averag_11p}}</td>
+        <td>{{ averag_11q}}</td>
+        <td>{{ averag_11r}}</td>
+        <td>{{ averag_11s}}</td>
+        <td>{{ averag_11t}}</td>
+</tr>
+<tr class="alt">
+        <td>Semana+2</td>
+        <td>{{ averag_12m}}</td>
+        <td>{{ averag_12n}}</td>
+        <td>{{ averag_12o}}</td>
+        <td>{{ averag_12p}}</td>
+        <td>{{ averag_12q}}</td>
+        <td>{{ averag_12r}}</td>
+        <td>{{ averag_12s}}</td>
+        <td>{{ averag_12t}}</td>
+</tr>
+<tr>
+        <td>Semana+3</td>
+        <td>{{ averag_13m}}</td>
+        <td>{{ averag_13n}}</td>
+        <td>{{ averag_13o}}</td>
+        <td>{{ averag_13p}}</td>
+        <td>{{ averag_13q}}</td>
+        <td>{{ averag_13r}}</td>
+        <td>{{ averag_13s}}</td>
+        <td>{{ averag_13t}}</td>
+</tr>
+<tr class="alt">
+        <td>Semana+4</td>
+        <td>{{ averag_14m}}</td>
+        <td>{{ averag_14n}}</td>
+        <td>{{ averag_14o}}</td>
+        <td>{{ averag_14p}}</td>
+        <td>{{ averag_14q}}</td>
+        <td>{{ averag_14r}}</td>
+        <td>{{ averag_14s}}</td>
+        <td>{{ averag_14t}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>{{ message }}</h3>
+<h3>{{ message }}</h3>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Semana', 'N/A', 'Sondas', 'Multimetros', 'Osciloscopios', 'Generadores', 'Fpga','Fuentes', 'Trasformadores'],
+          ['Semana-2', {{smm2}},      {{smn2}},        {{smo2}},             {{smp2}},          {{smq2}},     {{smr2}},     {{sms2}},     {{smt2}}],
+          ['Semana-1', {{smm1}},      {{smn1}},        {{smo1}},             {{smp1}},          {{smq1}},     {{smr1}},     {{sms1}},     {{smt1}}],
+          ['Semana+1', {{ averag_11m}},   {{ averag_11n}},      {{ averag_11o}},            {{ averag_11p}},      {{ averag_11q}},     {{ averag_11r}},      {{ averag_11s}},     {{ averag_11t}}],
+          ['Semana+2', {{ averag_12m}},   {{ averag_12n}},      {{ averag_12o}},            {{ averag_12p}},      {{ averag_12q}},     {{ averag_12r}},      {{ averag_12s}},     {{ averag_12t}}],
+          ['Semana+3', {{ averag_13m}},   {{ averag_13n}},      {{ averag_13o}},            {{ averag_13p}},      {{ averag_13q}},      {{ averag_13r}},     {{ averag_13s}},     {{ averag_13t}}],
+          ['Semana+4', {{ averag_14m}},   {{ averag_13n}},      {{ averag_14o}},            {{ averag_14p}},      {{ averag_14q}},      {{ averag_14r}},     {{ averag_14s}},     {{ averag_14t}}]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Prediccion Por Metodo Dos "Random Forest Regressor"',
+            subtitle: '',
+          },
+          bars: 'horizontal' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="barchart_material" style="width: 900px; height: 700px;"></div>
+  </body>
+</html>
+
+{% endblock %}

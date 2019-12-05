@@ -1,0 +1,49 @@
+﻿
+{% extends "app/layout.html" %}
+{% block content %}
+
+
+<div class="jumbotron"><!--gygygygygyg
+                           
+                           l,lklklkl
+                           
+                           jhbhvghv
+                           -->
+    <h1>PrediLab</h1>
+    <meta charset=”utf8″ />
+    <p class="lead">MANTENIMIENTO PREDICTIVO DE EQUIPOS EN EL LABORATORIO DE ELECTRONICA DE LA UPTC SECCIONAL SOGAMOSO.</p>
+    <!--<p><a href="https://www.djangoproject.com/" class="btn btn-primary btn-large">Leer mas &raquo;</a></p>-->
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Proyecto</h2>
+        <p ALIGN="justify">
+            La aplicación web para mantenimiento predictivo de equipos en el laboratorio de electrónica nace con el objetivo de agilizar y mejorar el proceso de mantenimiento de equipos, aumentar en cierta parte su vida útil, evitar una gran cantidad de equipos fuera de servicio y reducir los costos que dicho trabajo genera.
+            El personal encargado del mantenimiento tendrá una guía de posibles daños, reportes y mantenimientos a realizar. También contará con una herramienta que le indicará el requerimiento de repuestos y componentes, así como equipos con posibles fallas en las semanas siguientes a la consulta.
+
+                    </p ALIGN="justify">
+        <!--<p><a class="btn btn-default" href="http://www.mclibre.org/consultar/htmlcss/css/css-fuente.html">Leer mas &raquo;</a></p>-->
+    </div>
+    <div class="col-md-4">
+        <h2>Resultados</h2>
+        <p ALIGN="justify">En esta sección podra encontar informacion acerca de los resultados obtenidos por los dos algoritmos de prediccion seran de gran ayuda para elegir el metodo a tener en cuenta segun el caso.</p>
+        <p><a class="btn btn-default" href="{% url 'informe' %}">Informé &raquo;</a></p> 
+        
+    </div>
+    <div class="col-md-4">
+        <h2>Equipos</h2>
+        <p ALIGN="justify">El uso continuo de equipos del laboratorio de electronica de la uptc seccional Sogamoso sumado a la ausencia de planes de mantenimiento predictivo de los mismos conlleva a fallos inesperados y por ende a disminucion de la capacidad disponible. El laboratorio de electronica cuenta con el software Agility lab 2017 el cual permite llevar un control de usuarios, reporte de fallas y control de prestamo de equipos, en esta seccion se podran observar resultados correspondientes a una sugerencia de equipos a posible revisión.</p>
+        <!--<p><a class="btn btn-default" href="{% url 'contact' %}">Prediccion &raquo;</a ></p>-->
+        <p><a class="btn btn-default" href="{% url 'UsoM' %}">Equipos Posible Daño &raquo;</a></p>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+

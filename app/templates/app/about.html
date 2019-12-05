@@ -1,0 +1,195 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}Resultados Modelo Uno "Red Neuronal"</h2>
+    <meta charset=”utf8″ />
+<h3>{{ message }}Cantidad de Reportes Predichos por semana</h3>
+<h3>{{ message }}</h3>
+<div class="datagrid">
+<table >
+<thead>
+    <tr>
+    <th></th>
+    <th>Fusibles</th>
+    <th>Fuente</th>
+    <th>Gen y Osc</th>
+    <th>Multimetros</th>
+    <th>Sondas</th>
+    <th>Otros</th>
+    <th>Nrep</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <tr><td title="El porcentaje de la predicción, el mejor score sera el mas cercano a 1">Score</td>
+        <td>{{scoreU}}</td>
+        <td>{{scoreF}}</td>
+        <td>{{scoreG}}</td>
+        <td>{{scoreM}}</td>
+        <td>{{scoreS}}</td>
+        <td>{{scoreO}}</td>
+        <td>{{scoreN}}</td>
+    </tr>
+<tr class="alt">
+        <tr><td title="Error cuadrático medio mide el promedio de los errores al cuadrado, es decir la diferencia entre el estimador y lo que se estima el mejor sera el mas cercano a cero. ">MSE</td>
+        <td>{{MSEU}}</td>
+        <td>{{MSEF}}</td>
+        <td>{{MSEG}}</td>
+        <td>{{MSEM}}</td>
+        <td>{{MSES}}</td>
+        <td>{{MSEO}}</td>
+        <td>{{MSEN}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2>{{ title }}Resultados Modelo Dos "RandomForest"</h2>
+<h3>{{ message }}Cantidad de Reportes Predichos por semana</h3>
+<div class="datagrid">
+<table >
+<thead>
+    <tr>
+    <th></th>
+    <th>Fusibles</th>
+    <th>Fuente</th>
+    <th>Gen y Osc</th>
+    <th>Multimetros</th>
+    <th>Sondas</th>
+    <th>Otros</th>
+    <th>Nrep</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <tr><td title="El porcentaje de la prediccion, el mejor score sera el mas cercano a 1">Score</td>
+        <td>{{scorU}}</td>
+        <td>{{scorF}}</td>
+        <td>{{scorG}}</td>
+        <td>{{scorM}}</td>
+        <td>{{scorS}}</td>
+        <td>{{scorO}}</td>
+        <td>{{scorN}}</td>
+        </tr>
+<tr class="alt">
+        <tr><td title="Error cuadrático medio mide el promedio de los errores al cuadrado, es decir la diferencia entre el estimador y lo que se estima el mejor sera el mas cercano a cero. ">MSE</td>
+        <td>{{MSU}}</td>
+        <td>{{MSF}}</td>
+        <td>{{MSG}}</td>
+        <td>{{MSM}}</td>
+        <td>{{MSS}}</td>
+        <td>{{MSO}}</td>
+        <td>{{MSN}}</td>
+</tr>
+
+</tbody>
+
+</table>
+    <div class="tooltip">Score
+        <span class="tooltiptext">Tooltip text</span>
+    </div>
+</div>
+<div class="datagrid">
+
+    <div class="tooltip">Score
+        <span class="tooltiptext">Tooltip text</span>
+    </div>
+</div>
+<h3>{{ message }}</h3>
+<h3>{{ message }}</h3>
+<h3>{{ message }}</h3>
+<h3>{{ message }}</h3>
+<A name="tema1"></a>
+
+
+
+
+
+<html>
+<head>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+         google.charts.load('current', {'packages':['bar']});
+         google.charts.setOnLoadCallback(drawChart);
+         function drawChart() {
+           var data = google.visualization.arrayToDataTable([
+          ['Item', 'Red Neuronal', 'Random Forest'],
+          ['Fusibles', {{scoreU}},{{ scorU}}],
+          ['Fuente', {{scoreF}},{{ scorF}}],
+          ['Gen y Osc',  {{scoreG}},{{ scorG}}],
+          ['Multimetros', {{scoreM}},{{ scorM}}],
+          ['Sondas', {{scoreS}},{{ scorS}}],
+          ['Otros', {{scoreO}},{{ scorO}}],
+          ['NumeroRep', {{scoreN}},{{ scorN}}]
+        ]);
+        var options = {
+          chart: {
+            title: 'Score Comparacion Red Neuronal y Random Forest',
+   
+          },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          hAxis: {format: 'decimal'},
+          height: 400,
+          colors: ['#084d6e', '#D5B92B', '#7570b3']
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        var btns = document.getElementById('btn-group');
+        btns.onclick = function (e) {
+          if (e.target.tagName === 'BUTTON') {
+            options.hAxis.format = e.target.id === 'none' ? '' : e.target.id;
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+          }
+        }
+      }
+    </script>
+        
+  </head>
+  <body>
+    <div class="tooltip">Hover over me
+    <span class="tooltiptext">Tooltip text</span>
+    </div>
+    <div id="chart_div"></div>
+    <br/>
+    <!-- <h2> {{ sm2n}}, {{ sm1 }}, {{ average3 }} , {{ average4 }} </h2> -->
+  </body>
+</html>
+
+ <html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Item', 'Red Neuronal', 'Random Forest'],
+          ['Fusibles', {{scoreU}},{{ scorU}}],
+          ['Fuente', {{scoreF}},{{ scorF}}],
+          ['Gen y Osc',  {{scoreG}},{{ scorG}}],
+          ['Multimetros', {{scoreM}},{{ scorM}}],
+          ['Sondas', {{scoreS}},{{ scorS}}],
+          ['Otros', {{scoreO}},{{ scorO}}],
+          ['NumeroRep', {{scoreN}},{{ scorN}}]
+        ]);
+
+        var options = {
+          title: 'Comparacion "MSE" Red Neuronal y Random Forest',
+          
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  </body>
+</html>
+
+{% endblock %}
